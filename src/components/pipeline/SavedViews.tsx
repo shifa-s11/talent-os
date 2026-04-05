@@ -65,7 +65,7 @@ export function SavedViews() {
   };
 
   return (
-    <div className="px-4 sm:px-5 pt-2 pb-1">
+    <div className="px-4 sm:px-5 pt-1.5 pb-1">
       <div className="flex items-center gap-2 overflow-x-auto">
         {allViews.map((view) => {
           const active = JSON.stringify(view.filters) === currentFilterKey;

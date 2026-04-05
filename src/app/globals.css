@@ -63,6 +63,31 @@ body {
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
+.visible-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.55) rgba(255, 255, 255, 0.05);
+}
+
+.visible-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.visible-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+}
+
+.visible-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.55);
+  border-radius: 999px;
+  border: 2px solid rgba(12, 15, 26, 0.9);
+}
+
+.visible-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(165, 180, 252, 0.8);
+}
+
 /* ── Shimmer utility ── */
 .shimmer {
   background: linear-gradient(

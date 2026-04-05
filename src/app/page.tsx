@@ -32,6 +32,7 @@ export default function Home() {
 function HomeContent() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isWorkspaceExpanded, setIsWorkspaceExpanded] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -141,17 +142,20 @@ function HomeContent() {
 
       <div id="main-content" className="flex min-w-0 flex-1 flex-col overflow-y-auto overflow-x-hidden md:overflow-hidden">
         <Header onMobileMenu={() => setIsMobileMenuOpen(true)} />
-        <JobOverview />
-        <InsightsStrip />
-        <SlaBanner />
+        <JobOverview compact={isWorkspaceExpanded} />
+        {!isWorkspaceExpanded && <InsightsStrip />}
+        {!isWorkspaceExpanded && <SlaBanner />}
 
         <div className="flex flex-1 flex-col overflow-visible md:min-h-0 md:overflow-hidden">
           {!isLoading && candidates.length === 0 ? (
             <GlobalEmptyState />
           ) : (
             <>
-              <SavedViews />
-              <FilterBar />
+              {!isWorkspaceExpanded && <SavedViews />}
+              <FilterBar
+                workspaceExpanded={isWorkspaceExpanded}
+                onToggleWorkspaceExpanded={() => setIsWorkspaceExpanded((value) => !value)}
+              />
               {viewMode === "board" ? <KanbanBoard /> : <CandidateTable />}
             </>
           )}

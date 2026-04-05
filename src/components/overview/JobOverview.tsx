@@ -14,7 +14,11 @@ const FUNNEL_COLORS = {
   text: ["text-blue-400", "text-violet-400", "text-amber-400", "text-cyan-400", "text-emerald-400"],
 };
 
-export function JobOverview() {
+export function JobOverview({
+  compact = false,
+}: {
+  compact?: boolean;
+}) {
   const candidates = usePipelineStore((state) => state.candidates);
   const totalApplicants = candidates.length;
   const funnelData = STAGES.map((stage) => {
@@ -32,8 +36,8 @@ export function JobOverview() {
   const activeOffers = candidates.filter((candidate) => candidate.stage === "Offered").length;
 
   return (
-    <div className="bg-[#111827] border-b border-white/[0.06] px-4 sm:px-6 py-3 flex-shrink-0">
-      <div className="flex flex-col xl:flex-row gap-4 xl:gap-6">
+    <div className={cn("bg-[#111827] border-b border-white/[0.06] px-4 sm:px-6 flex-shrink-0 transition-all duration-200", compact ? "py-2" : "py-2.5")}>
+      <div className={cn("flex flex-col xl:flex-row transition-all duration-200", compact ? "gap-3 xl:gap-4" : "gap-4 xl:gap-6")}>
         <div className="flex items-start gap-3 flex-1 min-w-0">
           <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
             <Briefcase size={17} className="text-indigo-400" />
@@ -50,7 +54,7 @@ export function JobOverview() {
               </span>
             </div>
 
-            <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+            <div className={cn("flex flex-wrap items-center gap-x-4 gap-y-1.5", compact ? "mt-1" : "mt-1.5")}>
               <MetaChip icon={Building2} label={JOB.department} />
               <MetaChip icon={MapPin} label={JOB.location} />
               <MetaChip icon={UserCheck} label={`HM: ${JOB.hiringManager}`} />
@@ -61,39 +65,41 @@ export function JobOverview() {
           </div>
         </div>
 
-        <div className="flex-shrink-0 xl:w-96 w-full">
-          <div className="mb-2 flex items-center gap-1.5">
-            <TrendingDown size={11} className="text-slate-600" />
-            <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest">
-              Hiring Funnel
-            </span>
-          </div>
+        {!compact && (
+          <div className="flex-shrink-0 xl:w-96 w-full">
+            <div className="mb-2 flex items-center gap-1.5">
+              <TrendingDown size={11} className="text-slate-600" />
+              <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest">
+                Hiring Funnel
+              </span>
+            </div>
 
-          <div className="space-y-2">
-            {funnelData.map((row, index) => {
-              const relativeWidth = Math.round((row.count / maxStageCount) * 100);
-              return (
-                <div key={row.stage} className="flex items-center gap-2.5">
-                  <span className={cn("text-[10px] font-medium w-[72px] flex-shrink-0 truncate", FUNNEL_COLORS.text[index])}>
-                    {row.stage}
-                  </span>
-                  <div className="flex-1 h-1.5 bg-white/[0.05] rounded-full overflow-hidden">
-                    <div
-                      className={cn("h-full rounded-full transition-all duration-700", FUNNEL_COLORS.bar[index])}
-                      style={{ width: `${relativeWidth}%` }}
-                    />
+            <div className="space-y-2">
+              {funnelData.map((row, index) => {
+                const relativeWidth = Math.round((row.count / maxStageCount) * 100);
+                return (
+                  <div key={row.stage} className="flex items-center gap-2.5">
+                    <span className={cn("text-[10px] font-medium w-[72px] flex-shrink-0 truncate", FUNNEL_COLORS.text[index])}>
+                      {row.stage}
+                    </span>
+                    <div className="flex-1 h-1.5 bg-white/[0.05] rounded-full overflow-hidden">
+                      <div
+                        className={cn("h-full rounded-full transition-all duration-700", FUNNEL_COLORS.bar[index])}
+                        style={{ width: `${relativeWidth}%` }}
+                      />
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-400 w-5 text-right flex-shrink-0">
+                      {row.count}
+                    </span>
+                    <span className="text-[9px] font-mono w-10 text-right flex-shrink-0 text-slate-600">
+                      {row.pct}%
+                    </span>
                   </div>
-                  <span className="text-[10px] font-mono text-slate-400 w-5 text-right flex-shrink-0">
-                    {row.count}
-                  </span>
-                  <span className="text-[9px] font-mono w-10 text-right flex-shrink-0 text-slate-600">
-                    {row.pct}%
-                  </span>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

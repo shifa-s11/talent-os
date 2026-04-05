@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, LayoutGrid, List, Rows3, Rows2, Rows4, Tag, X } from "lucide-react";
+import { Download, LayoutGrid, List, Maximize2, Minimize2, Rows3, Rows2, Rows4, Tag, X } from "lucide-react";
 import { usePipelineStore } from "@/store/usePipelineStore";
 import {
   cn,
@@ -41,7 +41,13 @@ const DENSITY_OPTIONS: { value: DensityMode; icon: React.ElementType; label: str
   { value: "spacious", icon: Rows4, label: "Spacious density" },
 ];
 
-export function FilterBar() {
+export function FilterBar({
+  workspaceExpanded,
+  onToggleWorkspaceExpanded,
+}: {
+  workspaceExpanded: boolean;
+  onToggleWorkspaceExpanded: () => void;
+}) {
   const {
     viewMode,
     setViewMode,
@@ -72,7 +78,7 @@ export function FilterBar() {
     });
 
   return (
-    <div className="bg-[#0c0f1a] border-b border-white/[0.06] px-4 sm:px-5 py-2 flex-shrink-0">
+    <div className="bg-[#0c0f1a] border-b border-white/[0.06] px-4 sm:px-5 py-1.5 flex-shrink-0">
       <div className="flex items-center gap-2 flex-wrap">
         <div className="flex items-center gap-1.5 flex-wrap">
           {STAGES.map((stage) => {
@@ -121,6 +127,21 @@ export function FilterBar() {
         <div className="flex-1 min-w-0" />
 
         <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={onToggleWorkspaceExpanded}
+            aria-label={workspaceExpanded ? "Restore dashboard sections" : "Expand workspace"}
+            title={workspaceExpanded ? "Restore dashboard sections" : "Expand workspace"}
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs transition-all duration-200 active:scale-[0.98]",
+              workspaceExpanded
+                ? "border-indigo-500/30 bg-indigo-500/12 text-indigo-200 hover:border-indigo-400/50 hover:text-white focus-visible:border-indigo-400/50 focus-visible:text-white"
+                : "border-white/[0.08] bg-[#1a2236] text-slate-300 hover:border-white/[0.16] hover:text-white focus-visible:border-white/[0.16] focus-visible:text-white",
+            )}
+          >
+            {workspaceExpanded ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
+            {workspaceExpanded ? "Restore" : "Expand"}
+          </button>
+
           <select
             value={filters.experienceBracket}
             onChange={(event) => setFilters({ experienceBracket: event.target.value as typeof filters.experienceBracket })}

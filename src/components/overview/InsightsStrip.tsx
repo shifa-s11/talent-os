@@ -40,7 +40,7 @@ export function InsightsStrip() {
   }, [candidates]);
 
   return (
-    <div className="px-4 sm:px-6 py-2">
+    <div className="px-4 sm:px-6 py-1.5">
       <div className="grid grid-cols-2 xl:grid-cols-5 gap-3">
         {metrics.map((metric) => (
           <button

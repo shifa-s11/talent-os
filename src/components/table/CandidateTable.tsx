@@ -95,7 +95,7 @@ export function CandidateTable() {
 
   if (isLoading) {
     return (
-      <div className="flex-1 overflow-auto animate-fadeIn">
+      <div className="visible-scrollbar flex-1 overflow-auto px-4 pt-1.5 pb-3 animate-fadeIn">
         <table className="w-full min-w-[780px]">
           <tbody>
             {Array.from({ length: PAGE_SIZE }).map((_, index) => <SkeletonRow key={index} />)}
@@ -108,7 +108,7 @@ export function CandidateTable() {
   if (filtered.length === 0 && hasActiveFilters(filters)) {
     return (
       <div className="flex flex-col flex-1 min-h-0 overflow-hidden animate-fadeIn">
-        <div className="flex-1 overflow-auto">
+        <div className="visible-scrollbar flex-1 overflow-auto px-4 pt-1.5 pb-3">
           <EmptySearchResults />
         </div>
       </div>
@@ -117,7 +117,7 @@ export function CandidateTable() {
 
   return (
     <div className="flex flex-col flex-1 min-h-0 overflow-hidden animate-fadeIn">
-      <div className="flex-1 overflow-auto">
+      <div className="visible-scrollbar flex-1 overflow-auto px-4 pt-1.5 pb-3">
         <table className="w-full min-w-[980px]">
           <thead className="sticky top-0 z-10 border-b border-white/[0.06] bg-[#0c0f1a]">
             <tr>
