@@ -117,14 +117,18 @@ function HomeContent() {
     params.set("view", viewMode);
     params.set("sort", sortKey);
     params.set("sortDir", sortDir);
-    router.replace(params.toString() ? `${pathname}?${params.toString()}` : pathname);
+    const nextQuery = params.toString();
+    const currentQuery = searchParams.toString();
+    if (nextQuery !== currentQuery) {
+      router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname);
+    }
 
     try {
       window.localStorage.setItem("tf_viewmode", viewMode);
       window.localStorage.setItem("tf_sidebar", sidebarCollapsed ? "collapsed" : "expanded");
       window.localStorage.setItem("tf_density", density);
     } catch {}
-  }, [density, filters, pathname, router, sidebarCollapsed, sortDir, sortKey, viewMode]);
+  }, [density, filters, pathname, router, searchParams, sidebarCollapsed, sortDir, sortKey, viewMode]);
 
   return (
     <div className="flex min-h-screen overflow-x-hidden bg-[#0c0f1a] md:h-screen md:overflow-hidden">
