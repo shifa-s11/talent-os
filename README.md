@@ -1,4 +1,4 @@
-# TalentFlow Candidate Pipeline Dashboard
+# TalentOS Candidate Pipeline Dashboard
 
 TalentFlow is a responsive recruitment SaaS dashboard built with Next.js, React, TypeScript, and Tailwind CSS. It is designed to feel like a polished hiring operations product, with strong visual hierarchy, recruiter-friendly workflows, and production-style empty, loading, and interaction states.
 
