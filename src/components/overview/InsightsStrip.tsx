@@ -40,7 +40,7 @@ export function InsightsStrip() {
   }, [candidates]);
 
   return (
-    <div className="px-4 sm:px-6 py-3">
+    <div className="px-4 sm:px-6 py-2">
       <div className="grid grid-cols-2 xl:grid-cols-5 gap-3">
         {metrics.map((metric) => (
           <button
@@ -48,7 +48,7 @@ export function InsightsStrip() {
             onClick={() => {
               if (metric.label === "Active offers") setFilters({ stages: ["Offered"] });
             }}
-            className={`rounded-2xl border-l-2 bg-[#111827] border border-white/[0.06] p-4 text-left transition-all duration-150 hover:bg-[#172033] ${metric.signal}`}
+            className={`rounded-2xl border-l-2 bg-[#111827] border border-white/[0.06] p-3.5 text-left transition-all duration-150 hover:bg-[#172033] ${metric.signal}`}
           >
             <p className="text-[13px] text-slate-500">{metric.label}</p>
             <p className="mt-1 font-mono text-[22px] font-medium">{metric.value}</p>

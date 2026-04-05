@@ -72,7 +72,7 @@ export function FilterBar() {
     });
 
   return (
-    <div className="bg-[#0c0f1a] border-b border-white/[0.06] px-4 sm:px-5 py-2.5 flex-shrink-0">
+    <div className="bg-[#0c0f1a] border-b border-white/[0.06] px-4 sm:px-5 py-2 flex-shrink-0">
       <div className="flex items-center gap-2 flex-wrap">
         <div className="flex items-center gap-1.5 flex-wrap">
           {STAGES.map((stage) => {

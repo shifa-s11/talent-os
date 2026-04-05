@@ -32,8 +32,8 @@ export function JobOverview() {
   const activeOffers = candidates.filter((candidate) => candidate.stage === "Offered").length;
 
   return (
-    <div className="bg-[#111827] border-b border-white/[0.06] px-4 sm:px-6 py-4 flex-shrink-0">
-      <div className="flex flex-col xl:flex-row gap-5 xl:gap-8">
+    <div className="bg-[#111827] border-b border-white/[0.06] px-4 sm:px-6 py-3 flex-shrink-0">
+      <div className="flex flex-col xl:flex-row gap-4 xl:gap-6">
         <div className="flex items-start gap-3 flex-1 min-w-0">
           <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
             <Briefcase size={17} className="text-indigo-400" />
@@ -50,7 +50,7 @@ export function JobOverview() {
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-2">
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1.5">
               <MetaChip icon={Building2} label={JOB.department} />
               <MetaChip icon={MapPin} label={JOB.location} />
               <MetaChip icon={UserCheck} label={`HM: ${JOB.hiringManager}`} />
@@ -62,7 +62,7 @@ export function JobOverview() {
         </div>
 
         <div className="flex-shrink-0 xl:w-96 w-full">
-          <div className="flex items-center gap-1.5 mb-2.5">
+          <div className="mb-2 flex items-center gap-1.5">
             <TrendingDown size={11} className="text-slate-600" />
             <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest">
               Hiring Funnel

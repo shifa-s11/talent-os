@@ -32,7 +32,7 @@ export function KanbanBoard() {
   /* ── Loading skeleton ── */
   if (isLoading) {
     return (
-      <div className="flex gap-5 p-5 overflow-x-auto kanban-scroll flex-1 min-h-0">
+      <div className="flex flex-1 min-h-0 gap-4 overflow-x-auto p-4 pt-2 kanban-scroll">
         {STAGES.map((s) => (
           <SkeletonColumn key={s} />
         ))}
@@ -45,7 +45,7 @@ export function KanbanBoard() {
 
   /* ── Board ── */
   return (
-    <div className="flex gap-5 p-5 overflow-x-auto kanban-scroll flex-1 min-h-0 pb-6">
+    <div className="flex flex-1 min-h-0 gap-4 overflow-x-auto p-4 pt-2 pb-5 kanban-scroll">
       {STAGES.map((stage) => (
         <StageColumn
           key={stage}

@@ -17,7 +17,7 @@ export function SlaBanner() {
   if (dismissed || staleCount === 0) return null;
 
   return (
-    <div className="mx-4 mt-3 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-200 animate-fadeIn">
+    <div className="mx-4 mt-1 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-2.5 text-sm text-amber-200 animate-fadeIn">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <AlertTriangle size={16} />
