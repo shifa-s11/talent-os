@@ -7,6 +7,16 @@ export type Stage =
   | "Offered"
   | "Hired";
 
+export type CandidateTag =
+  | "Referral"
+  | "Immediate Joiner"
+  | "Notice Period"
+  | "Design System Fit"
+  | "Ex-FAANG"
+  | "Open Source"
+  | "Requires Relocation"
+  | "Negotiating";
+
 export type ExperienceBracket = "0-2" | "3-5" | "5-8" | "8+";
 
 export interface Skill {
@@ -16,10 +26,13 @@ export interface Skill {
 
 export interface TimelineEvent {
   id: string;
-  stage: Stage;
+  stage?: Stage;
   date: string;
+  event?: string;
+  description?: string;
+  icon?: Stage | "reject" | "interview";
   note?: string;
-  actor: string;
+  actor?: string;
 }
 
 export interface Note {
@@ -49,6 +62,7 @@ export interface Candidate {
   education: string;
   location: string;
   summary: string;
+  tags: CandidateTag[];
   timeline: TimelineEvent[];
   notes: Note[];
 }
@@ -59,7 +73,6 @@ export interface Job {
   location: string;
   openPositions: number;
   hiringManager: string;
-  totalApplicants: number;
 }
 
 export interface FilterState {
@@ -67,6 +80,12 @@ export interface FilterState {
   stages: Stage[];
   experienceBracket: ExperienceBracket | "Any";
   scoreRange: "Any" | "80-100" | "60-79" | "below-60";
+  staleOnly: boolean;
+  tags: CandidateTag[];
 }
 
 export type ViewMode = "board" | "list";
+
+export type CandidateSortKey = "name" | "experience" | "matchScore" | "lastActivity";
+export type CandidateSortDir = "asc" | "desc";
+export type DensityMode = "compact" | "comfortable" | "spacious";

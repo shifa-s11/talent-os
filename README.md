@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TalentFlow Candidate Pipeline Dashboard
+
+TalentFlow is a responsive recruitment SaaS dashboard built with Next.js, React, TypeScript, and Tailwind CSS. It is designed to feel like a polished hiring operations product, with strong visual hierarchy, recruiter-friendly workflows, and production-style empty, loading, and interaction states.
+
+## Features
+
+- Responsive dashboard shell with sidebar, top navigation, breadcrumbs, and mobile drawer navigation
+- Job overview with live funnel metrics, average match score, and active offers
+- Candidate pipeline in both Kanban and table views
+- Global search plus stage, experience, score, tag, and stale-candidate filters
+- Candidate drawer with profile details, interview status, notes, timeline, tags, and suggested actions
+- Bulk actions, stage movement, CSV export, and interview scheduling
+- Proper loading, empty, no-results, and per-stage empty states
+- Accessibility improvements including skip link, focus management, live regions, and keyboard-friendly controls
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Zustand
+- Lucide React
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+npm run build
+npm run lint
+```
 
-## Learn More
+## Core Workflows
 
-To learn more about Next.js, take a look at the following resources:
+### Candidate management
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Review candidates by stage in a board layout
+- Switch to table view for denser scanning and sorting
+- Open the candidate drawer for deeper context and actions
+- Move candidates individually or in bulk
+- Reject candidates with status and timeline updates
+- Schedule interviews directly from the dashboard
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Recruiter productivity
 
-## Deploy on Vercel
+- Saved views for repeated hiring workflows
+- SLA and aging indicators to spot stuck candidates
+- Insights strip for funnel conversion and response speed
+- Tagging system for sourcing and prioritization signals
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Export and persistence
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Export selected candidates from bulk actions
+- Export filtered candidates from the filter bar
+- Preserve filters and view state in the URL
+- Persist UI preferences such as sidebar state, density, and view mode locally
+
+## Mobile Support
+
+- Slide-in sidebar drawer
+- Mobile search tray
+- Responsive board and table layouts
+- Mobile scrolling fixed for full dashboard access
+
+## Project Structure
+
+```text
+src/
+  app/
+  components/
+  hooks/
+  lib/
+  store/
+  types/
+```
+
+## Data Notes
+
+- Candidate and job data are mocked locally for the assignment
+- Store-driven derived metrics keep counts in sync as candidates move through stages
+- CSV export is generated client-side in the browser
+
+## Build
+
+Create a production build with:
+
+```bash
+npm run build
+```

@@ -1,6 +1,6 @@
 // src/lib/data.ts
 
-import type { Candidate, Job } from "@/types";
+import type { Candidate, CandidateTag, Job } from "@/types";
 import { expBracket } from "@/lib/utils";
 
 export const JOB: Job = {
@@ -9,22 +9,13 @@ export const JOB: Job = {
   location: "Remote · India",
   openPositions: 3,
   hiringManager: "Priya Sharma",
-  totalApplicants: 47,
 };
-
-export const FUNNEL = [
-  { stage: "Applied",     count: 47 },
-  { stage: "Shortlisted", count: 18 },
-  { stage: "Interview",   count: 9  },
-  { stage: "Offered",     count: 3  },
-  { stage: "Hired",       count: 1  },
-];
 
 const now = Date.now();
 const days = (d: number) => new Date(now - d * 86_400_000).toISOString();
 const hrs  = (h: number) => new Date(now - h * 3_600_000).toISOString();
 
-export const CANDIDATES: Candidate[] = [
+const BASE_CANDIDATES = [
 
   /* ── APPLIED ──────────────────────────────────────── */
   {
@@ -478,3 +469,25 @@ export const CANDIDATES: Candidate[] = [
     ],
   },
 ];
+
+const TAGS_BY_ID: Record<string, CandidateTag[]> = {
+  c1: ["Referral", "Design System Fit"],
+  c2: ["Notice Period"],
+  c3: ["Open Source"],
+  c14: ["Requires Relocation"],
+  c4: ["Design System Fit", "Immediate Joiner"],
+  c5: ["Open Source"],
+  c15: ["Notice Period"],
+  c7: ["Referral", "Open Source"],
+  c8: ["Design System Fit"],
+  c9: ["Negotiating"],
+  c10: ["Ex-FAANG", "Negotiating"],
+  c11: ["Notice Period"],
+  c12: ["Design System Fit", "Open Source"],
+  c13: ["Referral", "Immediate Joiner"],
+};
+
+export const CANDIDATES: Candidate[] = BASE_CANDIDATES.map((candidate) => ({
+  ...candidate,
+  tags: TAGS_BY_ID[candidate.id] ?? [],
+})) as Candidate[];
